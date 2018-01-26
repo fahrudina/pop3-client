@@ -2,7 +2,7 @@ package pop3client
 
 import (
 	"strings"
-	"github.com/go-pop3"
+	"github.com/fahrudina/go-pop3"
 	"github.com/helioina/api/log"
 	"net/smtp"
 	"net/mail"
