@@ -222,7 +222,7 @@ func senderRcptParser( mailAccount string ) string {
 }
 
 func encPasswd(password string)[]byte {
-    key := []byte("Mtiertt44LFatieh1238LsdbaLPsakmV") // 32 bytes
+    key := []byte("67890987654321234567890098765432") // 32 bytes
     plaintext := []byte(password)
     ciphertext, err := encrypt(key, plaintext)
     if err != nil {
@@ -232,7 +232,7 @@ func encPasswd(password string)[]byte {
 }
 
 func decPassword(ciphertext []byte)string{
-	key := []byte("Mtiertt44LFatieh1238LsdbaLPsakmV") // 32 bytes
+	key := []byte("67890987654321234567890098765432") // 32 bytes
 	result, err := decrypt(key, ciphertext)
     if err != nil {
 		log.LogError(err.Error())
