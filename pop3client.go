@@ -199,7 +199,7 @@ func GetMessages(pop3Address, username string, ctx *contexts.Context) {
 				if err := sendMessages(msg, popData.Email); err != nil {
 					log.LogError(err.Error())
 				} else {
-					fieldsToUpdate := map[string]interface{}{"uidl.seq": v.Seq, "uidl.size": v.Size, "uidl.uid": v.UID}
+					fieldsToUpdate := map[string]interface{}{"seq": v.Seq, "size": v.Size, "uid": v.UID}
 					if err := ctx.Ds.AddtoSePop3Data(popData.Username, fieldsToUpdate); err != nil {
 						log.LogError(err.Error())
 					}
