@@ -66,7 +66,7 @@ func InitiateGetMessages(pop3Address, username, password, email string, ctx *con
 		log.LogError(err.Error())
 	} else {
 		log.LogTrace("<%d>", len(uidl.Uidl))
-		countMsg := len(uidl.Uidl)
+		//countMsg := len(uidl.Uidl)
 
 		if len(uidl.Uidl) <= 100 {
 			for _, v := range uidl.Uidl {
@@ -81,9 +81,11 @@ func InitiateGetMessages(pop3Address, username, password, email string, ctx *con
 			}
 		} else {
 			loop := 1
+			var countMsg uint32
+			countMsg = count
 			for _, _ = range uidl.Uidl {
 				if loop <= 100 {
-					msg, err := c.Retr(uint32(countMsg))
+					msg, err := c.Retr(countMsg)
 					if err != nil {
 						log.LogError(err.Error())
 					} else {
@@ -199,7 +201,7 @@ func GetMessages(pop3Address, username string, ctx *contexts.Context) {
 				if err := sendMessages(msg, popData.Email); err != nil {
 					log.LogError(err.Error())
 				} else {
-					fieldsToUpdate := map[string]interface{}{"uidl.seq": v.Seq, "uidl.size": v.Size, "uidl.uid": v.UID}
+					fieldsToUpdate := map[string]interface{}{"seq": v.Seq, "size": v.Size, "uid": v.UID}
 					if err := ctx.Ds.AddtoSePop3Data(popData.Username, fieldsToUpdate); err != nil {
 						log.LogError(err.Error())
 					}
